@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp">
             <ImageView
-                android:id="@+id/back_button"
+                android:id="@+id/buttonBack"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/arrow_circle_down"

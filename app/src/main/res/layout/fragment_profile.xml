@@ -139,7 +139,8 @@
                 android:inputType="phone"
                 android:text="02341654704654106540" />
         </LinearLayout>
-    </LinearLayout> <androidx.appcompat.widget.AppCompatButton
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
     android:id="@+id/button_save_info"
     android:layout_width="match_parent"
     android:layout_height="56dp"

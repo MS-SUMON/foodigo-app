@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.foodigo"
+    namespace = "com.example.user"
     compileSdk {
         version = release(36)
     }

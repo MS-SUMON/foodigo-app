@@ -38,18 +38,34 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="Food name"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/buyAgainFoodOwner"
+                app:layout_constraintStart_toEndOf="@+id/buyAgainFoodImage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <!-- New Owner Name TextView -->
+            <TextView
+                android:id="@+id/buyAgainFoodOwner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Owner name"
+                android:textSize="14sp"
+                android:textColor="#888888"
                 app:layout_constraintBottom_toTopOf="@+id/buyAgainFoodPrice"
                 app:layout_constraintStart_toEndOf="@+id/buyAgainFoodImage"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/buyAgainFoodName" />
 
             <TextView
                 android:id="@+id/buyAgainFoodPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$3"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/buyAgainFoodName"
-                app:layout_constraintTop_toBottomOf="@+id/buyAgainFoodName" />
+                app:layout_constraintTop_toBottomOf="@+id/buyAgainFoodOwner" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buyAgainFoodButton"
@@ -62,9 +78,8 @@
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.appcompat.widget.AppCompatButton>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

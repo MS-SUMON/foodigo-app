@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="323dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:elevation="10dp">
 
@@ -42,25 +42,37 @@
                 android:layout_marginLeft="16dp"
                 android:text="Food Name"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/menuImage"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/ownerNamePopular"
                 app:layout_constraintStart_toEndOf="@+id/menuImage"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/ownerNamePopular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Owner Name"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/menuImage"
+                app:layout_constraintStart_toStartOf="@+id/menuFoodName"
+                app:layout_constraintTop_toBottomOf="@+id/menuFoodName" />
 
             <TextView
                 android:id="@+id/menuPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="56dp"
                 android:text="$5"
                 android:textColor="@color/orangecolor"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintEnd_toEndOf="@+id/menuAddToCart"
+                app:layout_constraintStart_toStartOf="@+id/menuAddToCart"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/menuAddToCart"
-                android:layout_width="100dp"
+                android:id="@+id/menuAddToCart" android:layout_width="100dp"
                 android:layout_height="22dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="30dp"
@@ -69,8 +81,6 @@
                 android:text="Add To Cart"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.702"
-                app:layout_constraintStart_toStartOf="@+id/menuPrice"
                 app:layout_constraintTop_toBottomOf="@+id/menuPrice" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
