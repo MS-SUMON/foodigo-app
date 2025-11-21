@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/lato_bold"
-        android:text="Login To Your  Account"
+        android:text="Login To Your Account"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="@+id/textView6"
@@ -62,7 +62,6 @@
         android:background="@drawable/edittext"
         android:drawableLeft="@drawable/baseline_email_24"
         android:drawablePadding="15dp"
-        android:elevation="5dp"
         android:ems="10"
         android:hint="E-mail or phone number"
         android:inputType="textEmailAddress"
@@ -72,23 +71,25 @@
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
+    <!-- Password field with eye icon -->
     <EditText
         android:id="@+id/editTextTextPassword"
         android:layout_width="325dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/edittext"
-        android:drawableLeft="@drawable/lock_01"
+        android:drawableStart="@drawable/lock_01"
+        android:drawableEnd="@drawable/eye_close2"
+        android:paddingRight="15dp"
         android:drawablePadding="15dp"
-        android:elevation="5dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:paddingLeft="15dp"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextEmailAddress"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+
 
     <TextView
         android:id="@+id/textView8"
@@ -143,7 +144,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button3"
+        android:id="@+id/loginbtn"
         android:layout_width="152dp"
         android:layout_height="57dp"
         android:layout_marginTop="20dp"
@@ -162,9 +163,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Don’t Have Account?"
-        app:layout_constraintEnd_toEndOf="@+id/button3"
-        app:layout_constraintStart_toStartOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintEnd_toEndOf="@+id/loginbtn"
+        app:layout_constraintStart_toStartOf="@+id/loginbtn"
+        app:layout_constraintTop_toBottomOf="@+id/loginbtn" />
 
     <TextView
         android:id="@+id/textView11"
@@ -178,4 +179,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

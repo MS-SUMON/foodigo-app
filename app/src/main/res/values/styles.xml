@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomRatingBar" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#636363</item> <!-- Empty star -->
+        <item name="colorControlActivated">#FFC107</item> <!-- Filled star -->
+    </style>
+
+</resources>

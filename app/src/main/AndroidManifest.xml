@@ -12,8 +12,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Foodigo">
         <activity
+            android:name=".SellerMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewSellerProfile"
+            android:exported="false" />
+        <activity
+            android:name="com.example.seller.OrderDispatchPage"
+            android:exported="false" />
+        <activity
+            android:name="com.example.seller.ProfilePage"
+            android:exported="false" />
+        <activity
+            android:name="com.example.seller.AddMenuPage"
+            android:exported="false" />
+        <activity
+            android:name="com.example.seller.AllItemMenuPage"
+            android:exported="false" />
+        <activity
+            android:name="com.example.seller.MainActivitySeller"
+            android:exported="false" />
+        <activity
+            android:name=".DetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PayOutActivity"
+            android:exported="false"
+            android:label="@string/title_activity_pay_out"
+            android:theme="@style/Theme.Foodigo" />
+        <activity
             android:name=".ChooseLocationActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".SignupActivity"
             android:exported="false" />
@@ -34,7 +63,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>
