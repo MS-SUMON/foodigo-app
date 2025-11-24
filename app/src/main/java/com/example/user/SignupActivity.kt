@@ -3,13 +3,28 @@ package com.example.user
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.MotionEvent
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.model.UserModel
 import com.example.user.databinding.ActivitySignupBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.database
+import kotlin.math.log
 
 class SignupActivity : AppCompatActivity() {
+
+    private lateinit var userName: String
+    private lateinit var nameOfRestaurant: String
+    private lateinit var email: String
+    private lateinit var password: String
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
 
     private val binding: ActivitySignupBinding by lazy {
         ActivitySignupBinding.inflate(layoutInflater)
@@ -21,6 +36,11 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
+        //initialization Firebase Auth
+        auth = Firebase.auth
+        //initialize Firebase database
+        database = Firebase.database.reference
+
 
         // --- Navigate to LoginActivity ---
         binding.alreadyhavebutton.setOnClickListener {
@@ -30,10 +50,10 @@ class SignupActivity : AppCompatActivity() {
         }
 
         // --- Password eye toggle ---
-        binding.editTextTextPassword2.setOnTouchListener { v, event ->
+        binding.password.setOnTouchListener { v, event ->
             val DRAWABLE_END = 2
             if (event.action == MotionEvent.ACTION_UP) {
-                val editText = binding.editTextTextPassword2
+                val editText = binding.password
                 val drawableEnd = editText.compoundDrawables[DRAWABLE_END]
                 if (drawableEnd != null) {
                     if (event.rawX >= (editText.right - drawableEnd.bounds.width() - editText.paddingEnd)) {
@@ -66,14 +86,23 @@ class SignupActivity : AppCompatActivity() {
         }
 
         // --- Create Account button ---
-        binding.button6.setOnClickListener {
-            val name = binding.editTextText.text.toString().trim()
-            val email = binding.editTextTextEmailAddress2.text.toString().trim()
-            val password = binding.editTextTextPassword2.text.toString().trim()
+        binding.creatButton.setOnClickListener {
+            //Get text from edittext
+            userName = binding.name.text.toString().trim()
+            //nameOfRestaurant = binding.restaurantName.text.toString().trim()
+            email = binding.emailOrPhone.text.toString().trim()
+            password = binding.password.text.toString().trim()
 
-            if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_SHORT).show()
+
+            //val name = binding.name.text.toString().trim()
+            //val email = binding.emailOrPhone.text.toString().trim()
+            //val password = binding.password.text.toString().trim()
+
+            if (userName.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please fill all details.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
+            }else{
+                createAccount(email,password)
             }
 
             val passwordError = isStrongPassword(password)
@@ -83,13 +112,41 @@ class SignupActivity : AppCompatActivity() {
             }
 
             // For now just show a toast (no database yet)
-            Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show()
 
             // Navigate to LoginActivity
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun createAccount(email: String, password: String){
+        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { task ->
+            if(task.isSuccessful){
+                Toast.makeText(this, "Account Created Successfully", Toast.LENGTH_SHORT).show()
+                saveUserData()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else{
+                Toast.makeText(this, "Account Creation Failed", Toast.LENGTH_SHORT).show()
+                Log.d("Account", "createAccount: Failure",task.exception)
+            }
+        }
+    }
+    // Save Data into Database
+    fun saveUserData() {
+        //Get text from edittext
+        userName = binding.name.text.toString().trim()
+        //nameOfRestaurant = binding.restaurantName.text.toString().trim()
+        email = binding.emailOrPhone.text.toString().trim()
+        password = binding.password.text.toString().trim()
+        val user = UserModel(userName,email,password)
+        val userID : String = FirebaseAuth.getInstance().currentUser!!.uid
+        // save user data Firebase database
+        database.child("user").child(userID).setValue(user)
     }
 
     // --- Strong password check ---

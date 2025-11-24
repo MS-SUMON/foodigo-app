@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "18864206286",
+    "project_id": "foodigo-45dd2",
+    "storage_bucket": "foodigo-45dd2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18864206286:android:fd41d565c5b50e090e3b9f",
+        "android_client_info": {
+          "package_name": "com.example.foodigo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCigT_5hnhfQbDc3tuXkfT69kpOs3Cejh8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
