@@ -8,9 +8,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="160dp">
 
+
+        <!-- NAME -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
@@ -37,12 +40,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"
+                android:background="@drawable/edittext_border"
+                android:hint="Write your name..."
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="aaaaaaaa" />
+                android:padding="10dp" />
         </LinearLayout>
 
+        <!-- ADDRESS -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,12 +74,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"
+                android:background="@drawable/edittext_border"
                 android:ems="10"
-                android:inputType="textMultiLine"
-                android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+                android:hint="Write your address..."
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                />
         </LinearLayout>
 
+        <!-- EMAIL -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
@@ -101,19 +109,21 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"
+                android:hint="Write your mail..."
+                android:background="@drawable/edittext_border"
                 android:ems="10"
-                android:inputType="textEmailAddress"
-                android:text="abc@gmail.com" />
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                 />
         </LinearLayout>
 
+        <!-- PHONE -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
             android:elevation="2dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -134,25 +144,83 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"
+                android:hint="Write your phone number..."
+                android:background="@drawable/edittext_border"
                 android:ems="10"
-                android:inputType="phone"
-                android:text="02341654704654106540" />
+                android:inputType="textPersonName"
+                android:padding="10dp" />
+        </LinearLayout>
+
+        <!-- PASSWORD FIELD -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="10dp"
+            android:elevation="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:gravity="center_vertical"
+                android:text="Password"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edit_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_border"
+                android:text="password"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:padding="10dp" />
+
+            <ImageView
+                android:id="@+id/eye_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/eye_close2"
+                android:padding="8dp" />
         </LinearLayout>
     </LinearLayout>
-    <androidx.appcompat.widget.AppCompatButton
-    android:id="@+id/button_save_info"
-    android:layout_width="match_parent"
-    android:layout_height="56dp"
-    android:layout_gravity="bottom"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginBottom="32dp"
-    android:background="@drawable/proceedbutton"
-    android:elevation="5dp"
-    android:text="Save Information"
-    android:textAllCaps="false"
-    android:textColor="@android:color/white"
-    android:textSize="20sp" />
 
+    <!-- Save Info Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_save_info"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/proceedbutton"
+        android:elevation="5dp"
+        android:text="Save Information"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+    <!-- LOGOUT BUTTON -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_logout"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/logoutbutton"
+        android:elevation="5dp"
+        android:text="Logout"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
 </FrameLayout>

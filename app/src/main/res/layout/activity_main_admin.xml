@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8"
+    tools:context="com.example.admin.MainActivityAdmin">
+
+    <!-- region: Header (Foodigo Logo and Title) - Matching the user's initial coordinates -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/admin_logo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/logo"
+            android:contentDescription="Foodigo Logo" />
+
+        <TextView
+            android:id="@+id/admin_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="Foodigo"
+            android:textColor="@color/orangecolor"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/admin_logo"
+            app:layout_constraintStart_toEndOf="@+id/admin_logo"
+            app:layout_constraintTop_toTopOf="@+id/admin_logo"
+            tools:fontFamily="@font/yeonsung_regular" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- endregion -->
+
+    <!-- Admin Features Title -->
+    <TextView
+        android:id="@+id/tv_admin_features"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Admin Features"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="@+id/header_layout"
+        app:layout_constraintTop_toBottomOf="@+id/header_layout" />
+
+    <!-- Feature Buttons Container (Vertical Stack) -->
+    <LinearLayout
+        android:id="@+id/ll_features_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="32dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_admin_features"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- region: Button 1: Seller Applications -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_seller_applications"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingEnd="16dp">
+
+                <!-- Colored Stripe on Left -->
+                <View
+                    android:id="@+id/stripe_seller"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:background="#FF8C00"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <!-- Icon -->
+                <ImageView
+                    android:id="@+id/icon_seller"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toEndOf="@+id/stripe_seller"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:src="@drawable/clipboard"
+                    tools:src="@drawable/clipboard"
+                    android:contentDescription="Seller Applications Icon" />
+
+                <!-- Text -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Seller Applications"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@+id/icon_seller"
+                    app:layout_constraintEnd_toStartOf="@+id/chevron_seller"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <!-- Chevron -->
+                <ImageView
+                    android:id="@+id/chevron_seller"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:src="@drawable/expand_right"
+                    tools:src="@drawable/expand_right"
+                    android:contentDescription="Go to Seller Applications" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+        <!-- endregion -->
+
+        <!-- region: Button 2: User Management -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_user_management"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingEnd="16dp">
+
+                <!-- Colored Stripe on Left -->
+                <View
+                    android:id="@+id/stripe_user"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:background="#FF8C00"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <!-- Icon -->
+                <ImageView
+                    android:id="@+id/icon_user_management"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toEndOf="@+id/stripe_user"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:src="@drawable/user_management"
+                    tools:src="@drawable/user_management"
+                    android:contentDescription="User Management Icon" />
+
+                <!-- Text -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="User Management"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@+id/icon_user_management"
+                    app:layout_constraintEnd_toStartOf="@+id/chevron_user_management"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <!-- Chevron -->
+                <ImageView
+                    android:id="@+id/chevron_user_management"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:src="@drawable/expand_right"
+                    tools:src="@drawable/expand_right"
+                    android:contentDescription="Go to User Management" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+        <!-- endregion -->
+
+        <!-- region: Button 3: Finance and payout -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_finance"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingEnd="16dp">
+
+                <!-- Colored Stripe on Left -->
+                <View
+                    android:id="@+id/stripe_finance"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:background="#FF8C00"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <!-- Icon -->
+                <ImageView
+                    android:id="@+id/icon_finance"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toEndOf="@+id/stripe_finance"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:src="@drawable/chart"
+                    tools:src="@drawable/chart"
+                    android:contentDescription="Finance Icon" />
+
+                <!-- Text -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Finance and payout"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@+id/icon_finance"
+                    app:layout_constraintEnd_toStartOf="@+id/chevron_finance"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <!-- Chevron -->
+                <ImageView
+                    android:id="@+id/chevron_finance"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:src="@drawable/expand_right"
+                    tools:src="@drawable/expand_right"
+                    android:contentDescription="Go to Finance and payout" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+        <!-- endregion -->
+
+        <!-- region: Button 4: Suspend Accounts -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_suspend"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingEnd="16dp">
+
+                <!-- Colored Stripe on Left -->
+                <View
+                    android:id="@+id/stripe_suspend"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:background="#FF8C00"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <!-- Icon -->
+                <ImageView
+                    android:id="@+id/icon_suspend"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toEndOf="@+id/stripe_suspend"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:src="@drawable/forbidden"
+                    tools:src="@drawable/forbidden"
+                    android:contentDescription="Suspend Accounts Icon" />
+
+                <!-- Text -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Suspend Accounts"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@+id/icon_suspend"
+                    app:layout_constraintEnd_toStartOf="@+id/chevron_suspend"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <!-- Chevron -->
+                <ImageView
+                    android:id="@+id/chevron_suspend"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:src="@drawable/expand_right"
+                    tools:src="@drawable/expand_right"
+                    android:contentDescription="Go to Suspend Accounts" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+        <!-- endregion -->
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.seller
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
@@ -44,9 +45,7 @@ class AddMenuPage : AppCompatActivity() {
         addItemButton = findViewById(R.id.add_item_button)
 
         // Back button
-        backBtn.setOnClickListener {
-            onBackPressed()
-        }
+        backBtn.setOnClickListener { onBackPressed() }
 
         // Upload button (later we can add gallery picker)
         uploadBtn.setOnClickListener {
@@ -60,40 +59,30 @@ class AddMenuPage : AppCompatActivity() {
     }
 
     private fun addMenuItem() {
-
         val name = itemName.text.toString().trim()
         val price = itemPrice.text.toString().trim()
         val desc = shortDesc.text.toString().trim()
         val ingr = ingredients.text.toString().trim()
 
         // Validation
-        if (name.isEmpty()) {
-            itemName.error = "Enter item name"
-            return
-        }
+        if (name.isEmpty()) { itemName.error = "Enter item name"; return }
+        if (price.isEmpty()) { itemPrice.error = "Enter item price"; return }
+        if (desc.isEmpty()) { shortDesc.error = "Enter short description"; return }
+        if (ingr.isEmpty()) { ingredients.error = "Enter ingredients"; return }
 
-        if (price.isEmpty()) {
-            itemPrice.error = "Enter item price"
-            return
-        }
-
-        if (desc.isEmpty()) {
-            shortDesc.error = "Enter short description"
-            return
-        }
-
-        if (ingr.isEmpty()) {
-            ingredients.error = "Enter ingredients"
-            return
-        }
-
-        // If everything is ok
-        Toast.makeText(this, "Item Added Successfully ✔", Toast.LENGTH_LONG).show()
+        // Show confirmation toast
+        Toast.makeText(this, "Item Added Successfully ✔", Toast.LENGTH_SHORT).show()
 
         // Clear fields (optional)
         itemName.setText("")
         itemPrice.setText("")
         shortDesc.setText("")
         ingredients.setText("")
+
+        // Navigate to MainActivitySeller
+        val intent = Intent(this, MainActivitySeller::class.java)
+        startActivity(intent)
+        finish() // close AddMenuPage
     }
+
 }

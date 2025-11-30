@@ -215,6 +215,7 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
+            app:fontFamily="@font/yeonsung_regular"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:text="Foodigo"
@@ -381,7 +382,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="100$"
+                    android:text="1000 TK"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"

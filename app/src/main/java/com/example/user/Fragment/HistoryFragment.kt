@@ -25,9 +25,9 @@ class HistoryFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        val buyAgainFoodName = arrayListOf("Food 1", "Food 2", "Food 3")
-        val buyAgainFoodOwner = arrayListOf("Owner A", "Owner B", "Owner C")  // New owner names
-        val buyAgainFoodPrice = arrayListOf("$10", "$8", "$30")
+        val buyAgainFoodName = arrayListOf("Rice", "Lentil Soup", "momo")
+        val buyAgainFoodOwner = arrayListOf("Happy Tastes", "The Soup Co", "Momo Mania")
+        val buyAgainFoodPrice = arrayListOf("500 TK", "700 TK", "800 TK")
         val buyAgainFoodImage = arrayListOf(R.drawable.menu1, R.drawable.menu2, R.drawable.menu3)
 
         buyAgainAdapter = BuyAgainAdapter(

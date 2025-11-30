@@ -34,7 +34,7 @@
 
             <TextView
                 android:id="@+id/buyAgainFoodName"
-                android:layout_width="wrap_content"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="Food name"
@@ -67,18 +67,28 @@
                 app:layout_constraintStart_toStartOf="@+id/buyAgainFoodName"
                 app:layout_constraintTop_toBottomOf="@+id/buyAgainFoodOwner" />
 
+            <ImageView
+                android:id="@+id/buy_again_trash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="8dp"
+                android:background="@drawable/trash"
+                app:layout_constraintEnd_toEndOf="@+id/buyAgainFoodButton"
+                app:layout_constraintStart_toStartOf="@+id/buyAgainFoodButton"
+                app:layout_constraintTop_toBottomOf="@+id/buyAgainFoodButton" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buyAgainFoodButton"
                 android:layout_width="85dp"
                 android:layout_height="30dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="16dp"
                 android:background="@color/orangecolor"
                 android:text="Buy Again"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/buyAgainFoodName" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

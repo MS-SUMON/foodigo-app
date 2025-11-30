@@ -9,6 +9,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.user.databinding.ActivityLoginBinding
 import com.example.seller.MainActivitySeller
+import com.example.admin.MainActivityAdmin
+import com.google.firebase.auth.FirebaseAuth // <--- Firebase Auth Import
 
 class LoginActivity : AppCompatActivity() {
 
@@ -17,11 +19,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private var isPasswordVisible = false
+    private lateinit var auth: FirebaseAuth // <--- 1. FirebaseAuth Instance Declaration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
+
+        // 2. Initialize FirebaseAuth instance
+        auth = FirebaseAuth.getInstance()
 
         // "Don't have account" button
         binding.donthavebutton.setOnClickListener {
@@ -39,24 +45,17 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            // --- Password strength check ---
             val passwordError = isStrongPassword(password)
             if (passwordError != null) {
+                // If password fails the strong password check, display the error and stop.
                 Toast.makeText(this, passwordError, Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
-            if (email.startsWith("seller", ignoreCase = true) && email.contains("@")) {
-                val sellerIntent = Intent(this, MainActivitySeller::class.java)
-                startActivity(sellerIntent)
-                finish()
-            } else {
-                val userIntent = Intent(this, MainActivity::class.java)
-                startActivity(userIntent)
-                finish()
-            }
+            performLogin(email, password)
         }
 
-        // --- Password eye toggle ---
         binding.editTextTextPassword.setOnTouchListener { v, event ->
             val DRAWABLE_END = 2
             if (event.action == MotionEvent.ACTION_UP) {
@@ -93,7 +92,40 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    // --- Password strength check ---
+    // --- NEW FUNCTION: Database/Firebase Login Check ---
+    private fun performLogin(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Login successful! Now determine the user role
+                    Toast.makeText(baseContext, "Login Successful.", Toast.LENGTH_SHORT).show()
+
+                    // 1. Check for Admin Role
+                    if (email.startsWith("admin", ignoreCase = true) && email.contains("@")) {
+                        val adminIntent = Intent(this, MainActivityAdmin::class.java)
+                        startActivity(adminIntent)
+                        finish()
+                    }
+                    // 2. Check for Seller Role
+                    else if (email.startsWith("seller", ignoreCase = true) && email.contains("@")) {
+                        val sellerIntent = Intent(this, MainActivitySeller::class.java)
+                        startActivity(sellerIntent)
+                        finish()
+                    }
+                    // 3. Default to User Role
+                    else {
+                        val userIntent = Intent(this, MainActivity::class.java)
+                        startActivity(userIntent)
+                        finish()
+                    }
+
+                } else {
+                    // Login failed (e.g., incorrect email or password)
+                    Toast.makeText(baseContext, "Authentication Failed. Please check your Email and Password.",
+                        Toast.LENGTH_LONG).show()
+                }
+            }
+    }
     private fun isStrongPassword(password: String): String? {
         if (password.length < 8) {
             return "Password must be at least 8 characters long."
