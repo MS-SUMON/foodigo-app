@@ -28,7 +28,7 @@ class CartFragment : Fragment() {
         val cartOwnerName = mutableListOf("Happy Tastes", "The Soup Co", "Momo Mania", "Restaurant X", "The Cheese Spot", "The Noodle Hut")
 
 
-        val cartItemPrice = mutableListOf("500 TK", "700 TK", "800 TK", "100 TK","200 TK","500 TK")
+        val cartItemPrice = mutableListOf("150 TK", "50 TK", "200 TK", "100 TK","300 TK","200 TK")
 
         val cartImage = mutableListOf(
             R.drawable.menu1,

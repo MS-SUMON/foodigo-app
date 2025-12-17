@@ -40,7 +40,7 @@ class SellerMenuActivity : AppCompatActivity() {
         // New Data provided by the user
         val foodName = listOf("Rice")
         val ownerName = listOf("Happy Tastes")
-        val price = listOf("500 TK")
+        val price = listOf("150 TK")
 
         // Reusing existing drawables. Adjust if you have new drawable names.
         val imageDrawables = listOf("menu1", "menu2", "menu3", "menu4", "menu5", "menu1")

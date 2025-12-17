@@ -17,7 +17,7 @@ class SearchFragment : Fragment() {
 
     // Define the full original data sets, including Owner Names
     private val originalMenuFoodName = listOf("Rice", "Lentil Soup", "momo", "Kabab", "Macaroni and Cheese", "Macaroni")
-    private val originalMenuItemPrice = listOf("500 TK", "700 TK", "800 TK", "100 TK", "200 TK", "500 TK")
+    private val originalMenuItemPrice = listOf("150 TK", "50 TK", "200 TK", "100 TK", "300 TK", "200 TK")
     private val originalMenuImage = listOf(
         R.drawable.menu1, R.drawable.menu2, R.drawable.menu3, R.drawable.menu4, R.drawable.menu2, R.drawable.menu3,
         R.drawable.menu1, R.drawable.menu2, R.drawable.menu3, R.drawable.menu4, R.drawable.menu2, R.drawable.menu3
