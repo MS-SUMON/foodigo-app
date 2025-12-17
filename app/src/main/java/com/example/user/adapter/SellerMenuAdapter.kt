@@ -25,7 +25,7 @@ class SellerMenuAdapter(
         val item = menuList[position]
 
         holder.binding.menuFoodName.text = item.foodName
-        holder.binding.ownerNamePopular.text = item.ownerName
+        holder.binding.ownerName.text = item.ownerName
         holder.binding.menuPrice.text = item.price
 
         // Load image from drawable

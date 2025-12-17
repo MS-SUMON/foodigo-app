@@ -11,17 +11,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 
         val navController = findNavController(R.id.fragmentContainerView)
 
-        val bottomnav = findViewById<BottomNavigationView>(R.id.bottomNavigationView2)
-        bottomnav.setupWithNavController(navController)
+        // Using binding for consistency
+        binding.bottomNavigationView2.setupWithNavController(navController)
 
         binding.notificationBell.setOnClickListener {
-            val BottomSheetDialog= NotificationBottomFragment
+            // CORRECT WAY to show a BottomSheetDialogFragment
+            val notificationSheet = NotificationBottomFragment()
+            notificationSheet.show(supportFragmentManager, "NotificationBottomSheet")
         }
 
     }

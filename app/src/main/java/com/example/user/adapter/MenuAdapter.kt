@@ -46,7 +46,7 @@ class MenuAdapter(
                 menuPrice.text = menuItemPrice[position]
                 menuImage.setImageResource(menuImages[position])
                 // ownerNamePopular is the ID in your XML for the owner name
-                ownerNamePopular.text = ownerNames[position]
+                ownerName.text = ownerNames[position]
 
                 // --- FIX: Implement the click listener here ---
                 // This correctly uses the item's view and its context.

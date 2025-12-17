@@ -20,9 +20,10 @@ class SellerMenuActivity : AppCompatActivity() {
         binding = ActivitySellerMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // --- Back Button ---
+        // ✅ Back Button is functional
+        // If you updated the XML ID to 'backButton', this line is correct:
         binding.backButton.setOnClickListener {
-            finish() // This will work
+            finish()
         }
 
         // --- RecyclerView setup ---
@@ -31,16 +32,26 @@ class SellerMenuActivity : AppCompatActivity() {
         binding.sellerMenuRecycler.layoutManager = LinearLayoutManager(this)
         binding.sellerMenuRecycler.adapter = adapter
 
-        // --- Load dummy menu items with drawable names ---
+        // --- Load new dummy menu items ---
         loadDummyMenu()
     }
 
     private fun loadDummyMenu() {
-        menuList.add(MenuModel("Strawberry Cake", "Ornali", "250 Tk", "menu1"))
-        menuList.add(MenuModel("Chocolate Hotpot", "Ornali", "350 Tk", "menu2"))
-        menuList.add(MenuModel("Vanilla Ice Cream", "Ornali", "150 Tk", "menu3"))
-        menuList.add(MenuModel("Fried Rice", "Ornali", "180 Tk", "menu4"))
-        menuList.add(MenuModel("Mango Smoothie", "Ornali", "120 Tk", "menu5"))
+        // New Data provided by the user
+        val foodName = listOf("Rice")
+        val ownerName = listOf("Happy Tastes")
+        val price = listOf("150 TK")
+
+        // Reusing existing drawables. Adjust if you have new drawable names.
+        val imageDrawables = listOf("menu1", "menu2", "menu3", "menu4", "menu5", "menu1")
+
+        // Clear old data and populate with new data
+        menuList.clear()
+
+        // Loop through the lists and add MenuModel objects
+        for (i in foodName.indices) {
+            menuList.add(MenuModel(foodName[i], ownerName[i], price[i], imageDrawables[i]))
+        }
 
         adapter.notifyDataSetChanged()
     }

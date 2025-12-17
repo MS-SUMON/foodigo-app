@@ -16,19 +16,21 @@ class CartFragment : Fragment() {
 
     private lateinit var binding: FragmentCartBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCartBinding.inflate(inflater, container, false)
 
-        val cartFoodName = listOf("Burger", "Sandwich", "Momo", "Item", "Sandwich", "Momo")
-        val cartItemPrice = listOf("$5", "$6", "$8", "$9", "$10", "$10")
-        val cartImage = listOf(
+        // ---------- DATA LISTS ----------
+        val cartFoodName = mutableListOf("Rice", "Lentil Soup", "momo", "Kabab","Macaroni and Cheese", "Macaroni")
+
+        val cartOwnerName = mutableListOf("Happy Tastes", "The Soup Co", "Momo Mania", "Restaurant X", "The Cheese Spot", "The Noodle Hut")
+
+
+        val cartItemPrice = mutableListOf("150 TK", "50 TK", "200 TK", "100 TK","300 TK","200 TK")
+
+        val cartImage = mutableListOf(
             R.drawable.menu1,
             R.drawable.menu2,
             R.drawable.menu3,
@@ -37,22 +39,22 @@ class CartFragment : Fragment() {
             R.drawable.menu3
         )
 
+        // ---------- SET ADAPTER ----------
         val adapter = CartAdapter(
-            ArrayList(cartFoodName),
-            ArrayList(cartItemPrice),
-            ArrayList(cartImage)
+            cartFoodName,
+            cartOwnerName,
+            cartItemPrice,
+            cartImage
         )
 
         binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.cartRecyclerView.adapter = adapter
-        binding.proceedButton.setOnClickListener {
-            val intent = Intent(requireContext(), PayOutActivity::class.java)
-            startActivity(intent)
-        }
 
+        // ---------- PROCEED BUTTON ----------
+        binding.proceedButton.setOnClickListener {
+            startActivity(Intent(requireContext(), PayOutActivity::class.java))
+        }
 
         return binding.root
     }
-
-    companion object
 }

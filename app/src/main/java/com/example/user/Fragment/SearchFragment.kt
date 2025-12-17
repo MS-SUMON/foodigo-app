@@ -16,13 +16,13 @@ class SearchFragment : Fragment() {
     private lateinit var adapter: MenuAdapter
 
     // Define the full original data sets, including Owner Names
-    private val originalMenuFoodName = listOf("Burger", "Momo", "Momo", "Momo", "Momo", "Momo","Momo", "Sandwich", "Momo", "Item", "Sandwich", "Momo")
-    private val originalMenuItemPrice = listOf("$5", "$6", "$8", "$9", "$10", "$10","$5", "$6", "$8", "$9", "$10", "$10")
+    private val originalMenuFoodName = listOf("Rice", "Lentil Soup", "momo", "Kabab", "Macaroni and Cheese", "Macaroni")
+    private val originalMenuItemPrice = listOf("150 TK", "50 TK", "200 TK", "100 TK", "300 TK", "200 TK")
     private val originalMenuImage = listOf(
         R.drawable.menu1, R.drawable.menu2, R.drawable.menu3, R.drawable.menu4, R.drawable.menu2, R.drawable.menu3,
         R.drawable.menu1, R.drawable.menu2, R.drawable.menu3, R.drawable.menu4, R.drawable.menu2, R.drawable.menu3
     )
-    private val originalMenuOwnerName = listOf("Owner A", "Owner B", "Owner C", "Owner D", "Owner E", "Owner F","Owner A", "Owner B", "Owner C", "Owner D", "Owner E", "Owner F")
+    private val originalMenuOwnerName = listOf("Happy Tastes", "The Soup Co", "Momo Mania", "Restaurant X", "The Cheese Spot", "The Noodle Hut")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

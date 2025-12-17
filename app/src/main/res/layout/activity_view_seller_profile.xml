@@ -55,7 +55,7 @@
                 android:id="@+id/sellerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Restaurant Name"
+                android:text="Happy Tastes"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="#000000"
@@ -109,14 +109,6 @@
                 android:layout_marginTop="20dp" />
 
             <TextView
-                android:id="@+id/sellerPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="+8801XXXXXXXXX"
-                android:textSize="18sp"
-                android:layout_marginTop="6dp" />
-
-            <TextView
                 android:id="@+id/sellerEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -144,11 +136,12 @@
     </ScrollView>
 
     <!-- View Menu Button -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/viewSellerMenuBtn"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:text="View Menu"
+        android:background="@drawable/orangebuttongradient"
         android:textSize="18sp"
         android:textColor="@color/white"
         android:layout_margin="20dp"

@@ -32,19 +32,19 @@
 
             <TextView
                 android:id="@+id/menuFoodName"
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="Food Name"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/ownerNamePopular"
+                app:layout_constraintBottom_toTopOf="@+id/ownerName"
                 app:layout_constraintStart_toEndOf="@+id/menuImage"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
-                android:id="@+id/ownerNamePopular"
+                android:id="@+id/ownerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Owner Name"
@@ -69,7 +69,7 @@
                 android:id="@+id/menuAddToCart"
                 android:layout_width="100dp"
                 android:layout_height="22dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="30dp"
                 android:background="@drawable/add_to_cart_shape"
                 android:gravity="center"

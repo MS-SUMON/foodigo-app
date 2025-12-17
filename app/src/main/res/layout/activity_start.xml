@@ -14,7 +14,7 @@
         android:fontFamily="@font/yeonsung_regular"
         android:text="Experience the warmth  of home\njust a tap away"
         android:textAlignment="center"
-        android:textColor="@color/textcolor"
+        android:textColor="@color/brown"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView7"
         app:layout_constraintStart_toStartOf="@+id/imageView7"
