@@ -38,9 +38,7 @@ class SellerMenuAdapter(
             holder.binding.menuImage.setImageResource(R.drawable.hotpot_2) // default
         }
 
-        // Add to cart click
         holder.binding.menuAddToCart.setOnClickListener {
-            // Placeholder for cart logic
         }
     }
 

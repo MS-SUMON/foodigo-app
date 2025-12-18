@@ -34,7 +34,7 @@ class TransactionHistoryAdapter(private val transactions: List<PendingPayoutItem
         holder.tvOwnerName.text = transaction.subtitle
         holder.tvPayoutDate.text = transaction.date
         holder.tvPayoutAmount.text = transaction.amount
-        holder.tvPayoutStatus.text = "Completed"  // For now, all payouts are Completed
+        holder.tvPayoutStatus.text = "Completed"
     }
 
     override fun getItemCount(): Int = transactions.size

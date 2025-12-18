@@ -8,7 +8,6 @@ import com.example.user.databinding.NotificationItemBinding
 class NotificationAdapter(private val notification: ArrayList<String>, private val notificationImage: ArrayList<Int>):
     RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
 
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

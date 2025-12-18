@@ -7,12 +7,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.admin.datamodel.AccountItem
-import com.example.user.R // Assuming R is in com.example.user based on your original import
+import com.example.user.R
 import com.google.android.material.imageview.ShapeableImageView
 
 class SuspendedAccountAdapter(
     private val accountList: List<AccountItem>,
-    private val onResumeClicked: (AccountItem) -> Unit // Lambda for button click
+    private val onResumeClicked: (AccountItem) -> Unit
 ) : RecyclerView.Adapter<SuspendedAccountAdapter.SuspendedAccountViewHolder>() {
 
     class SuspendedAccountViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -36,7 +36,6 @@ class SuspendedAccountAdapter(
         holder.ownerTextView.text = account.owner
 
         holder.resumeButton.setOnClickListener {
-            // Call the click handler passed from the Activity/Fragment
             onResumeClicked(account)
         }
     }

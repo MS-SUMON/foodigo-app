@@ -37,19 +37,21 @@ class AllItemMenuPage : AppCompatActivity() {
             onBackPressed()
         }
 
-        // Dummy Data (MutableList for deletion)
-        val itemList = mutableListOf(
-            "Burger",
-            "Pizza",
-            "Shawarma",
-            "Pasta",
-            "Fried Chicken",
-            "Cold Coffee"
+        // Dummy Data
+        val itemNames = mutableListOf(
+            "Chicken Burger",
+            "Beef Pizza",
+            "Chicken Shawarma",
+            "French Fries"
         )
-
-        // Setup RecyclerView
+        val itemPrices = mutableListOf(
+            180,
+            750,
+            220,
+            120
+        )
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = AllItemAdapter(itemList)
+        recyclerView.adapter = AllItemAdapter(itemNames, itemPrices)
 
     }
 }

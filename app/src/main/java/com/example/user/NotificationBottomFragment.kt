@@ -8,17 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.user.adapter.NotificationAdapter
 import com.example.user.databinding.FragmentNotificationBottomBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-
-
 class NotificationBottomFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentNotificationBottomBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

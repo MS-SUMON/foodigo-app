@@ -23,7 +23,6 @@ class HistoryFragment : Fragment() {
         setupRecyclerView()
         return binding.root
     }
-
     private fun setupRecyclerView() {
         val buyAgainFoodName = arrayListOf("Rice", "Lentil Soup", "momo")
         val buyAgainFoodOwner = arrayListOf("Happy Tastes", "The Soup Co", "Momo Mania")
@@ -32,7 +31,7 @@ class HistoryFragment : Fragment() {
 
         buyAgainAdapter = BuyAgainAdapter(
             buyAgainFoodName,
-            buyAgainFoodOwner,    // Pass owner names
+            buyAgainFoodOwner,
             buyAgainFoodPrice,
             buyAgainFoodImage
         )

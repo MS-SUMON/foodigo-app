@@ -12,7 +12,7 @@ import com.example.user.R
 import com.google.android.material.imageview.ShapeableImageView
 
 class SellerApplicationAdapter(
-    private val applicationsList: MutableList<SellerApplication> // Mutable list
+    private val applicationsList: MutableList<SellerApplication>
 ) : RecyclerView.Adapter<SellerApplicationAdapter.ApplicationViewHolder>() {
 
     class ApplicationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -38,19 +38,22 @@ class SellerApplicationAdapter(
 
         holder.btnApprove.setOnClickListener {
             Toast.makeText(holder.itemView.context, "Approved ${application.name}", Toast.LENGTH_SHORT).show()
-            removeItem(position)
+            removeItem(holder.adapterPosition) // using adapterPosition instead of position
         }
 
         holder.btnReject.setOnClickListener {
             Toast.makeText(holder.itemView.context, "Rejected ${application.name}", Toast.LENGTH_SHORT).show()
-            removeItem(position)
+            removeItem(holder.adapterPosition)
         }
     }
 
     override fun getItemCount(): Int = applicationsList.size
 
     private fun removeItem(position: Int) {
-        applicationsList.removeAt(position)
-        notifyItemRemoved(position)
+        if (position in 0 until applicationsList.size) {
+            applicationsList.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, applicationsList.size) // fix RecyclerView update
+        }
     }
 }

@@ -32,7 +32,7 @@ class BuyerHistoryActivity : AppCompatActivity() {
     private lateinit var tvTitleBuyerHistory: TextView
 
     private var buyerId: String? = null
-    private var buyerNameFromAdapter: String? = null // New variable to hold passed name
+    private var buyerNameFromAdapter: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,6 @@ class BuyerHistoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_buyer_history)
 
         buyerId = intent.getStringExtra("USER_ID") ?: "Unknown Buyer"
-        // ✅ FIX 2: Retrieve the Buyer Name passed from the Adapter
         buyerNameFromAdapter = intent.getStringExtra("BUYER_NAME")
 
         initializeViews()
@@ -50,11 +49,9 @@ class BuyerHistoryActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         loadBuyerData(buyerId)
         setupListeners()
     }
-
     private fun initializeViews() {
         btnBack = findViewById(R.id.btn_back)
         tvBuyerNameHeader = findViewById(R.id.tv_buyer_name_header)
@@ -69,33 +66,25 @@ class BuyerHistoryActivity : AppCompatActivity() {
         btnBlock = findViewById(R.id.btn_block)
         tvTitleBuyerHistory = findViewById(R.id.tv_title_buyer_history)
     }
-
     private fun setupListeners() {
         btnBack.setOnClickListener {
             finish()
         }
-
         btnBlock.setOnClickListener {
             Toast.makeText(this, "Blocking user $buyerId", Toast.LENGTH_SHORT).show()
         }
-
         tvViewMoreHistory.setOnClickListener {
             Toast.makeText(this, "Viewing full history for $buyerId", Toast.LENGTH_SHORT).show()
         }
     }
-
     private fun loadBuyerData(id: String?) {
         val buyerDetails = getDummyBuyerDetail(id)
         val orderHistory = getDummyOrderHistory()
 
-        // 🎯 FIX 3: Use the name passed from the adapter for the header and profile fields,
-        // falling back to dummy data if the Intent name is null.
         val finalBuyerName = buyerNameFromAdapter ?: buyerDetails.name
-
         tvBuyerNameHeader.text = finalBuyerName
         tvBuyerName.text = finalBuyerName
 
-        // Use the rest of the details from the dummy data
         tvBuyerAddress.text = buyerDetails.address
         tvBuyerEmail.text = buyerDetails.email
         tvBuyerPhone.text = buyerDetails.phone
@@ -106,12 +95,10 @@ class BuyerHistoryActivity : AppCompatActivity() {
         val orderAdapter = OrderHistoryAdapter(orderHistory)
         recyclerOrderHistory.layoutManager = LinearLayoutManager(this)
         recyclerOrderHistory.adapter = orderAdapter
-
         // Update the history title
         tvTitleBuyerHistory.text = "${finalBuyerName} History"
     }
 
-    // NOTE: Assuming BuyerDetail and OrderHistoryItem are available data classes
     private fun getDummyBuyerDetail(id: String?): BuyerDetail {
         return when (id) {
             "B1" -> BuyerDetail("John Doe", "123 Main St, Block A", "john@mail.com", "9012345678", 45, 12500.50)
@@ -121,8 +108,6 @@ class BuyerHistoryActivity : AppCompatActivity() {
     }
 
     private fun getDummyOrderHistory(): List<OrderHistoryItem> {
-        // NOTE: OrderHistoryItem's itemImageUrl should ideally also be an Int resource ID,
-        // but it is left as String here to match your provided code snippet.
         return listOf(
             OrderHistoryItem(
                 orderId = "O101",

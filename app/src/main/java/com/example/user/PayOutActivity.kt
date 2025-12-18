@@ -3,8 +3,6 @@ package com.example.user
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.user.databinding.ActivityPayOutBinding
-
-
 class PayOutActivity : AppCompatActivity() {
     lateinit var binding: ActivityPayOutBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +13,6 @@ class PayOutActivity : AppCompatActivity() {
         binding.buttonBack.setOnClickListener {
             finish()
         }
-
         binding.placeMyOrder.setOnClickListener {
             val bottomSheetDialog = CongratesBottomSheet()
             bottomSheetDialog.show(supportFragmentManager,"Text")

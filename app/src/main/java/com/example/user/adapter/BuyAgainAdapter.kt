@@ -21,8 +21,6 @@ class BuyAgainAdapter(
             buyAgainFoodOwner.removeAt(position)
             buyAgainFoodPrice.removeAt(position)
             buyAgainFoodImage.removeAt(position)
-
-            // Notify the adapter that the item has been removed
             notifyItemRemoved(position)
         }
     }
@@ -46,24 +44,19 @@ class BuyAgainAdapter(
     inner class BuyAgainViewHolder(private val binding: BuyAgainItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            // 🗑️ SET DELETE LISTENER HERE
             binding.buyAgainTrash.setOnClickListener {
-                // Get the position of the item being clicked
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     removeItem(position)
                     Toast.makeText(itemView.context, "Item Deleted", Toast.LENGTH_SHORT).show()
                 }
             }
-
-            // Buy Again Button Listener (from previous request)
             binding.buyAgainFoodButton.setOnClickListener {
                 val context = itemView.context
                 val name = binding.buyAgainFoodName.text.toString()
                 Toast.makeText(context, "$name added to cart again", Toast.LENGTH_SHORT).show()
             }
         }
-
         fun bind(name: String, owner: String, price: String, imageRes: Int) {
             binding.buyAgainFoodName.text = name
             binding.buyAgainFoodOwner.text = owner

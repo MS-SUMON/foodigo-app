@@ -204,9 +204,9 @@ class SellerProfileActivityForAdmin : AppCompatActivity() {
     private fun loadStaticSellerData() {
         // Name fields are handled by the Intent logic in onCreate()
 
-        tvAddress.text = "lorem ipsum, road 360, Dhaka"
-        tvEmail.text = "loremipsum@gmail.com"
-        tvPhone.text = "123456789"
+        tvAddress.text = "8096\\A, road 360, Dhaka"
+        tvEmail.text = "seller@gmail.com"
+        tvPhone.text = "01834567890"
 
         tvCurrentBalance.text = "5000TK"
         tvPendingPayout.text = "1000TK"

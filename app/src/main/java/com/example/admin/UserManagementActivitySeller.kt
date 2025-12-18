@@ -14,7 +14,6 @@ import com.example.user.R
 import com.google.android.material.tabs.TabLayout
 
 class UserManagementActivitySeller : AppCompatActivity() {
-
     private lateinit var btnBack: ImageButton
     private lateinit var tabLayoutUsers: TabLayout
     private lateinit var recyclerViewUsers: RecyclerView
@@ -39,13 +38,11 @@ class UserManagementActivitySeller : AppCompatActivity() {
         setupRecyclerView()
         setupTabLayout()
     }
-
     private fun setupListeners() {
         btnBack.setOnClickListener {
             finish()
         }
     }
-
     private fun setupRecyclerView() {
         val initialData = createSellerData()
 
@@ -70,17 +67,11 @@ class UserManagementActivitySeller : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
 
-        // Ensure the adapter is populated with the Seller data initially when the tab is selected
-        // This is important because the default tab might not trigger onTabSelected immediately.
         if (tabLayoutUsers.tabCount > 0) {
             tabLayoutUsers.getTabAt(0)?.select()
         }
     }
-
-    // In UserManagementActivitySeller.kt
-
     private fun createSellerData(): List<User> {
-        // Example data: Business Name, Owner Name (Subtitle)
         return listOf(
             User("S1", "Spicy fresh crab", "Lee", R.drawable.menu1), // Fixed: Removed .toString()
             User("S2", "The Burger Joint", "Mark", R.drawable.menu2), // Fixed: Removed .toString()
@@ -88,9 +79,6 @@ class UserManagementActivitySeller : AppCompatActivity() {
             User("S4", "Italian Pasta Co.", "Rossi", R.drawable.menu4) // Fixed: Removed .toString()
         )
     }
-
-    // In UserManagementActivitySeller.kt
-
     private fun createBuyerData(): List<User> {
         return listOf(
             User("B1", "John Doe", "", R.drawable.profile), // Fixed: Removed .toString()

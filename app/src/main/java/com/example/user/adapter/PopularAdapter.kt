@@ -24,7 +24,6 @@ class PopularAdapter(
         )
         return PopularViewHolder(binding)
     }
-
     override fun onBindViewHolder(holder: PopularViewHolder, position: Int) {
         // Use the lists to bind data
         holder.bind(
@@ -33,24 +32,18 @@ class PopularAdapter(
             imageList[position],
             ownerList[position]
         )
-
-        // ✅ FIX 1: Uncomment and implement the click listener
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
 
             val intent = Intent(context, DetailsActivity::class.java).apply {
-                // ✅ FIX 2: Use the exact keys expected by DetailsActivity.kt
                 putExtra("menuItemName", foodName[position])
                 putExtra("menuItemImage", imageList[position])
-
-                // Add other useful data, even if not used yet in DetailsActivity
                 putExtra("menuItemPrice", price[position])
                 putExtra("menuItemOwner", ownerList[position])
             }
             context.startActivity(intent)
         }
     }
-
     inner class PopularViewHolder(private val binding: PopularItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(itemName: String, itemPrice: String, imageRes: Int, ownerName: String) {
             binding.foodNamePopular.text = itemName

@@ -27,14 +27,13 @@ class ProfileFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private var currentUserUid: String? = null
-
     private var isEditable = false
     private var isPasswordVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
-        // Initialize Firebase Realtime Database reference
+        // Initialize Firebase - Realtime Database
         database = Firebase.database.reference
         currentUserUid = auth.currentUser?.uid
 
@@ -60,7 +59,7 @@ class ProfileFragment : Fragment() {
 
         loadUserProfile() // Load data from Firebase
 
-        // -------- SAVE/UPDATE BUTTON --------
+        //SAVE/UPDATE BUTTON
         binding.buttonSaveInfo.setOnClickListener {
             if (!isEditable) {
                 // Currently in 'view' mode, switch to 'edit' mode
@@ -73,12 +72,12 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        // -------- LOGOUT BUTTON --------
+        // LOGOUT BUTTON
         binding.buttonLogout.setOnClickListener {
             logoutUser()
         }
 
-        // -------- PASSWORD VISIBILITY TOGGLE --------
+        // PASSWORD VISIBILITY TOGGLE
         binding.eyeIcon.setOnClickListener {
             // Only allow toggling if in edit mode and fragment context is available
             if (!isEditable || context == null) return@setOnClickListener
@@ -105,11 +104,10 @@ class ProfileFragment : Fragment() {
 
         Log.d("ProfileDebug", "Attempting to load data for UID: $currentUserUid")
 
-        // Listen for a single data event
         database.child("user").child(currentUserUid!!).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    // Retrieve fields
+
                     val name = snapshot.child("name").getValue(String::class.java)
                     val email = snapshot.child("email").getValue(String::class.java)
                     val phone = snapshot.child("phone").getValue(String::class.java)
@@ -117,14 +115,12 @@ class ProfileFragment : Fragment() {
                     val password = snapshot.child("password").getValue(String::class.java)
 
 
-                    // Populate the EditText fields
                     binding.editName.setText(name)
                     binding.editEmail.setText(email)
                     binding.editPhone.setText(phone ?: "")
                     binding.editAddress.setText(address ?: "")
                     binding.editPassword.setText(password)
-
-                    binding.editEmail.isEnabled = false // Email usually shouldn't be edited via this screen
+                    binding.editEmail.isEnabled = false
                 } else {
                     Toast.makeText(requireContext(), "User data not found in database!", Toast.LENGTH_SHORT).show()
                 }
@@ -142,7 +138,7 @@ class ProfileFragment : Fragment() {
 
         val newPassword = binding.editPassword.text.toString()
 
-        // 1. Prepare updates for Realtime Database (Now includes the password again)
+        // 1. Prepare updates for Realtime Database
         val updates = HashMap<String, Any>()
         updates["name"] = binding.editName.text.toString()
         updates["address"] = binding.editAddress.text.toString()
@@ -154,7 +150,6 @@ class ProfileFragment : Fragment() {
         database.child("user").child(currentUserUid!!).updateChildren(updates)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "Profile Updated Successfully!", Toast.LENGTH_SHORT).show()
-                // Disable edit mode after DB update attempt
                 disableEditMode()
             }
             .addOnFailureListener {
@@ -162,7 +157,6 @@ class ProfileFragment : Fragment() {
                 Log.e("ProfileFragment", "Database Save failed: ${it.message}")
             }
 
-        // 2. Update Firebase Authentication Password (Secure way)
         auth.currentUser?.updatePassword(newPassword)
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -179,8 +173,7 @@ class ProfileFragment : Fragment() {
         isEditable = true
         setEditable(true)
         binding.buttonSaveInfo.text = "Save Information"
-
-        // Hide password field and reset visibility icon upon entering edit mode
+        // Hide password field and reset visibility icon - entering edit mode
         isPasswordVisible = false
         binding.editPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         binding.eyeIcon.setImageResource(R.drawable.eye_close2)
@@ -192,7 +185,7 @@ class ProfileFragment : Fragment() {
         setEditable(false)
         binding.buttonSaveInfo.text = "Update Information"
 
-        // Hide password field and reset visibility icon after saving
+        // Hide password field and reset visibility - after saving
         isPasswordVisible = false
         binding.editPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         binding.eyeIcon.setImageResource(R.drawable.eye_close2)
@@ -205,7 +198,7 @@ class ProfileFragment : Fragment() {
         binding.editPassword.isEnabled = enable
         binding.eyeIcon.isEnabled = enable
         if (!enable) {
-            binding.editEmail.isEnabled = false // Email stays disabled
+            binding.editEmail.isEnabled = false
         }
     }
 
@@ -230,11 +223,10 @@ class ProfileFragment : Fragment() {
 
     private fun logoutUser() {
         auth.signOut()
-        // Clear local session data (if used)
+        // Clear local session data
         val sharedPref = requireActivity().getSharedPreferences("user_session", 0)
         sharedPref.edit().clear().apply()
 
-        // Navigate to Login Activity and clear back stack
         val intent = Intent(requireContext(), LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)

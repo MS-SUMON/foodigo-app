@@ -21,7 +21,6 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private var isPasswordVisible = false
-
     private val binding: ActivitySignupBinding by lazy {
         ActivitySignupBinding.inflate(layoutInflater)
     }
@@ -33,8 +32,6 @@ class SignupActivity : AppCompatActivity() {
 
         auth = Firebase.auth
         database = Firebase.database.reference
-
-        // Assuming layout IDs: alreadyhavebutton, button6 (Create Account), name, emailOrPhone, password
 
         binding.alreadyhavebutton.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
@@ -61,13 +58,11 @@ class SignupActivity : AppCompatActivity() {
             createAccount(userName, email, password)
         }
 
-        // Password Visibility Toggle (using password ID)
         setupPasswordToggle()
     }
 
     private fun setupPasswordToggle() {
         binding.password.setOnTouchListener { v, event ->
-            // (Password toggle logic remains the same as previously provided)
             val DRAWABLE_END = 2
             if (event.action == MotionEvent.ACTION_UP) {
                 val editText = binding.password
@@ -90,8 +85,6 @@ class SignupActivity : AppCompatActivity() {
             false
         }
     }
-
-
     private fun createAccount(userName: String, email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -102,7 +95,6 @@ class SignupActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun saveUserData(userName: String, email: String, password: String) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {

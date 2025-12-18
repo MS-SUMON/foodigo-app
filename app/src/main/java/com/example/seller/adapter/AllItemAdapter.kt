@@ -9,20 +9,21 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.user.R
 
-
-class AllItemAdapter(private val itemList: MutableList<String>) :
-    RecyclerView.Adapter<AllItemAdapter.ItemViewHolder>() {
+class AllItemAdapter(
+    private val itemNames: MutableList<String>,
+    private val itemPrices: MutableList<Int>
+) : RecyclerView.Adapter<AllItemAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val itemName: TextView = itemView.findViewById(R.id.item_name)
+        val itemPrice: TextView = itemView.findViewById(R.id.item_price)
         val quantityText: TextView = itemView.findViewById(R.id.quantity_text)
         val plusButton: ImageView = itemView.findViewById(R.id.plus_button)
         val minusButton: ImageButton = itemView.findViewById(R.id.minusButton)
-        val trashButton: ImageView = itemView.findViewById(R.id.item_image)
+        val trashButton: ImageView = itemView.findViewById(R.id.imageView5)
     }
 
-    // Initial quantity for each item is 1
-    private val quantityList = MutableList(itemList.size) { 1 }
+    private val quantityList = MutableList(itemNames.size) { 1 }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -31,7 +32,8 @@ class AllItemAdapter(private val itemList: MutableList<String>) :
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.itemName.text = itemList[position]
+        holder.itemName.text = itemNames[position]
+        holder.itemPrice.text = "${itemPrices[position]} TK"
         holder.quantityText.text = quantityList[position].toString()
 
         // Increase quantity
@@ -42,7 +44,7 @@ class AllItemAdapter(private val itemList: MutableList<String>) :
 
         // Decrease quantity
         holder.minusButton.setOnClickListener {
-            if (quantityList[position] > 1) { // prevent going below 1
+            if (quantityList[position] > 1) {
                 quantityList[position]--
                 holder.quantityText.text = quantityList[position].toString()
             }
@@ -50,12 +52,13 @@ class AllItemAdapter(private val itemList: MutableList<String>) :
 
         // Delete item
         holder.trashButton.setOnClickListener {
-            itemList.removeAt(position)
+            itemNames.removeAt(position)
+            itemPrices.removeAt(position)
             quantityList.removeAt(position)
             notifyItemRemoved(position)
-            notifyItemRangeChanged(position, itemList.size)
+            notifyItemRangeChanged(position, itemNames.size)
         }
     }
 
-    override fun getItemCount(): Int = itemList.size
+    override fun getItemCount(): Int = itemNames.size
 }
