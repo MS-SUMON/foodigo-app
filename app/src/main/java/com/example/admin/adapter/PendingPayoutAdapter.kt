@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.admin.datamodel.PendingPayoutItem
-import com.example.user.R // Contains references to drawables and layout
+import com.example.user.R
 
 class PendingPayoutAdapter(
     private val payoutList: List<PendingPayoutItem>
@@ -36,14 +36,13 @@ class PendingPayoutAdapter(
         holder.date.text = item.date
         holder.amount.text = item.amount
 
-        // --- Image loading from Drawable ---
+        //Image loading from Drawable
         if (item.imageResId != null && item.imageResId != 0) {
             holder.logo.setImageResource(item.imageResId)
         } else {
             // Set a default image if none is provided
             holder.logo.setImageResource(R.drawable.menu4)
         }
-        // --- End Image loading ---
     }
 
     override fun getItemCount(): Int {

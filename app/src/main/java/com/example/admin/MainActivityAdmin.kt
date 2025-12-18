@@ -5,74 +5,74 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.user.R // Assumed R file location
+import com.example.user.R
+import com.example.user.LoginActivity // আপনার প্রজেক্টের LoginActivity ইমপোর্ট করুন
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivityAdmin : AppCompatActivity() {
 
-    // Declare CardViews corresponding to the dashboard items
     private lateinit var cardSellerApplications: CardView
     private lateinit var cardUserManagement: CardView
     private lateinit var cardFinance: CardView
     private lateinit var cardSuspend: CardView
+    private lateinit var btnLogout: AppCompatButton // বাটন ডিক্লারেশন
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        // Assuming your layout file is named activity_main_admin.xml
         setContentView(R.layout.activity_main_admin)
 
-        // 1. Initialize views by ID from the XML layout
         initializeViews()
 
-        // 2. Apply window insets for edge-to-edge layout
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // 3. Setup navigation listeners
         setupClickListeners()
     }
 
     private fun initializeViews() {
-        // Ensure these IDs match the CardView IDs in activity_main_admin.xml
         cardSellerApplications = findViewById(R.id.card_seller_applications)
         cardUserManagement = findViewById(R.id.card_user_management)
         cardFinance = findViewById(R.id.card_finance)
         cardSuspend = findViewById(R.id.card_suspend)
+        btnLogout = findViewById(R.id.logoutfromadmin) // আইডি অনুযায়ী বাটন ইনিশিয়ালাইজ
     }
 
     private fun setupClickListeners() {
-        // --- 1. Seller Applications ---
         cardSellerApplications.setOnClickListener {
-            // Navigate to the screen for reviewing new seller applications
-            val intent = Intent(this, SellerApplicationActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, SellerApplicationActivity::class.java))
         }
 
-        // --- 2. User Management ---
         cardUserManagement.setOnClickListener {
-            // Navigate to the screen for managing user/seller accounts
-            // NOTE: Renamed to UserManagementActivityAdmin for clarity, check your actual class name.
-            val intent = Intent(this, UserManagementActivitySeller::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, UserManagementActivitySeller::class.java))
         }
 
-        // --- 3. Finance and Payout ---
         cardFinance.setOnClickListener {
-            // Navigate to the finance dashboard
-            val intent = Intent(this, FinanceAndPayoutActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, FinanceAndPayoutActivity::class.java))
         }
 
-        // --- 4. Suspend/Block Accounts ---
         cardSuspend.setOnClickListener {
-            // Navigate to the screen for suspending/blocking accounts
-            val intent = Intent(this, SuspendAccountsActivity::class.java)
+            startActivity(Intent(this, SuspendAccountsActivity::class.java))
+        }
+
+        // --- Logout Button Logic ---
+        btnLogout.setOnClickListener {
+            // ১. Firebase থেকে সাইন আউট করা
+            FirebaseAuth.getInstance().signOut()
+
+            // ২. লগইন স্ক্রিনে পাঠিয়ে দেওয়া এবং ব্যাক স্ট্যাক ক্লিয়ার করা
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+
+            // ৩. বর্তমান অ্যাক্টিভিটি শেষ করা
+            finish()
         }
     }
 }

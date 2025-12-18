@@ -13,7 +13,6 @@ import com.example.user.adapter.CartAdapter
 import com.example.user.databinding.FragmentCartBinding
 
 class CartFragment : Fragment() {
-
     private lateinit var binding: FragmentCartBinding
 
     override fun onCreateView(
@@ -22,12 +21,8 @@ class CartFragment : Fragment() {
     ): View {
         binding = FragmentCartBinding.inflate(inflater, container, false)
 
-        // ---------- DATA LISTS ----------
         val cartFoodName = mutableListOf("Rice", "Lentil Soup", "momo", "Kabab","Macaroni and Cheese", "Macaroni")
-
         val cartOwnerName = mutableListOf("Happy Tastes", "The Soup Co", "Momo Mania", "Restaurant X", "The Cheese Spot", "The Noodle Hut")
-
-
         val cartItemPrice = mutableListOf("150 TK", "50 TK", "200 TK", "100 TK","300 TK","200 TK")
 
         val cartImage = mutableListOf(
@@ -39,7 +34,6 @@ class CartFragment : Fragment() {
             R.drawable.menu3
         )
 
-        // ---------- SET ADAPTER ----------
         val adapter = CartAdapter(
             cartFoodName,
             cartOwnerName,
@@ -50,11 +44,9 @@ class CartFragment : Fragment() {
         binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.cartRecyclerView.adapter = adapter
 
-        // ---------- PROCEED BUTTON ----------
         binding.proceedButton.setOnClickListener {
             startActivity(Intent(requireContext(), PayOutActivity::class.java))
         }
-
         return binding.root
     }
 }

@@ -17,14 +17,12 @@ class ViewSellerProfile : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_view_seller_profile)
 
-        // Handle system window insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Retrieve seller data from Intent
         val sellerEmail = intent.getStringExtra("sellerEmail") ?: ""
 
         // Set seller email
@@ -34,14 +32,13 @@ class ViewSellerProfile : AppCompatActivity() {
         // Back button
         val backButton = findViewById<ImageButton>(R.id.back_button)
         backButton.setOnClickListener {
-            finish() // Go back to previous activity
+            finish()
         }
-
         // View Menu button
         val viewMenuBtn = findViewById<Button>(R.id.viewSellerMenuBtn)
         viewMenuBtn.setOnClickListener {
             val intent = Intent(this, SellerMenuActivity::class.java)
-            intent.putExtra("sellerEmail", sellerEmail) // pass the seller's email
+            intent.putExtra("sellerEmail", sellerEmail)
             startActivity(intent)
         }
     }

@@ -14,8 +14,6 @@ class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private lateinit var adapter: MenuAdapter
-
-    // Define the full original data sets, including Owner Names
     private val originalMenuFoodName = listOf("Rice", "Lentil Soup", "momo", "Kabab", "Macaroni and Cheese", "Macaroni")
     private val originalMenuItemPrice = listOf("150 TK", "50 TK", "200 TK", "100 TK", "300 TK", "200 TK")
     private val originalMenuImage = listOf(
@@ -38,7 +36,6 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         adapter = MenuAdapter(
@@ -98,8 +95,6 @@ class SearchFragment : Fragment() {
 
                 originalMenuFoodName.forEachIndexed { index, foodName ->
                     val ownerName = originalMenuOwnerName[index]
-
-                    // 🌟 FIX: Use an OR (||) condition to check both Food Name and Owner Name
                     val matchesFood = foodName.contains(query, ignoreCase = true)
                     val matchesOwner = ownerName.contains(query, ignoreCase = true)
 

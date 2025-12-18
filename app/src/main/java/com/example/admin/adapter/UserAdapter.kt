@@ -26,23 +26,20 @@ class UserAdapter(
         private val LAYOUT_SELLER_ITEM = R.layout.user_management_recycler_view_seller
         private val LAYOUT_BUYER_ITEM = R.layout.user_management_recycler_view_buyer
     }
-
-    // --- ViewHolders ---
-
+    //  ViewHolders
     class SellerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameTextView: TextView = view.findViewById(R.id.tv_user_name_seller)
         val subtitleTextView: TextView = view.findViewById(R.id.tv_user_subtitle_seller)
         val profileImageView: ShapeableImageView = view.findViewById(R.id.iv_profile_image_seller)
         val btnViewProfile: Button = view.findViewById(R.id.btn_view_profile)
     }
-
     class BuyerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameTextView: TextView = view.findViewById(R.id.tv_user_name_seller)
         val profileImageView: ShapeableImageView = view.findViewById(R.id.iv_profile_image_seller)
         val btnViewHistory: Button = view.findViewById(R.id.btn_view_profile)
     }
 
-    // --- Adapter Overrides ---
+    //  Adapter Overrides
 
     override fun getItemViewType(position: Int): Int {
         return if (userList[position].subtitle.isNotEmpty()) VIEW_TYPE_SELLER else VIEW_TYPE_BUYER
@@ -70,7 +67,6 @@ class UserAdapter(
                 // Set data
                 holder.nameTextView.text = user.name
                 holder.subtitleTextView.text = user.subtitle
-                // ✅ FIX: Load the image using the Int resource ID
                 holder.profileImageView.setImageResource(user.image)
 
                 // Intent to SellerProfileActivityForAdmin
@@ -84,16 +80,13 @@ class UserAdapter(
                 }
             }
             is BuyerViewHolder -> {
-                // Set data
                 holder.nameTextView.text = user.name
-                // ✅ FIX: Load the image using the Int resource ID
                 holder.profileImageView.setImageResource(user.image)
 
                 // Intent to BuyerHistoryActivity
                 holder.btnViewHistory.setOnClickListener {
                     val intent = Intent(context, BuyerHistoryActivity::class.java).apply {
                         putExtra("USER_ID", user.id)
-                        // ✅ FIX: Pass the Buyer Name
                         putExtra("BUYER_NAME", user.name)
                     }
                     context.startActivity(intent)

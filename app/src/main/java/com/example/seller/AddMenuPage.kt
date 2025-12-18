@@ -70,7 +70,6 @@ class AddMenuPage : AppCompatActivity() {
         if (desc.isEmpty()) { shortDesc.error = "Enter short description"; return }
         if (ingr.isEmpty()) { ingredients.error = "Enter ingredients"; return }
 
-        // Show confirmation toast
         Toast.makeText(this, "Item Added Successfully ✔", Toast.LENGTH_SHORT).show()
 
         // Clear fields (optional)
@@ -79,7 +78,6 @@ class AddMenuPage : AppCompatActivity() {
         shortDesc.setText("")
         ingredients.setText("")
 
-        // Navigate to MainActivitySeller
         val intent = Intent(this, MainActivitySeller::class.java)
         startActivity(intent)
         finish() // close AddMenuPage

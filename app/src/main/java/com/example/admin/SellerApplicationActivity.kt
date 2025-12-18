@@ -35,20 +35,17 @@ class SellerApplicationActivity : AppCompatActivity() {
         setupListeners()
         setupRecyclerView()
     }
-
     private fun setupListeners() {
         btnBack.setOnClickListener {
             finish()
         }
     }
-
     private fun setupRecyclerView() {
         val applicationsList = createSampleData().toMutableList()
         recyclerViewApplications.layoutManager = LinearLayoutManager(this)
         val adapter = SellerApplicationAdapter(applicationsList)
         recyclerViewApplications.adapter = adapter
     }
-
     private fun createSampleData(): List<SellerApplication> {
         return listOf(
             SellerApplication("1", R.drawable.menu2, "Spicy Fresh Crab", "by Sifat"),

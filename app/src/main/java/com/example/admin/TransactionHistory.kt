@@ -5,7 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import android.widget.ImageButton // Added the import for ImageButton
+import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.admin.adapter.TransactionHistoryAdapter
@@ -28,27 +28,18 @@ class TransactionHistory : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        // --- Fix 1: Back Button Logic ---
         val backButton: ImageButton = findViewById(R.id.btn_back)
         backButton.setOnClickListener {
             finish()
         }
-        // ---------------------------------
 
         recyclerView = findViewById(R.id.list_transaction_history_recycler)
 
-        // Load sample data
-        // The call to the function that was unresolved is here
         transactions.addAll(createSampleTransactions())
-
         adapter = TransactionHistoryAdapter(transactions)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
     }
-
-    // --- Fix 2: THE MISSING FUNCTION DEFINITION ---
-    // You must include this function within the TransactionHistory class
     private fun createSampleTransactions(): List<PendingPayoutItem> {
         return listOf(
             PendingPayoutItem(
@@ -77,5 +68,4 @@ class TransactionHistory : AppCompatActivity() {
             )
         )
     }
-    // ---------------------------------------------
 }

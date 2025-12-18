@@ -49,7 +49,6 @@ class HomeFragment : Fragment() {
 
         imageSlider.setItemClickListener(object : ItemClickListener {
             override fun doubleClick(position: Int) {
-                // TODO(reason: "Not yet implemented")
             }
 
             override fun onItemSelected(position: Int) {
@@ -62,14 +61,8 @@ class HomeFragment : Fragment() {
         val foodName = listOf("Rice", "Lentil Soup", "momo", "Kabab","Macaroni and Cheese", "Macaroni")
         val Price = listOf("150 TK", "50 TK", "200 TK", "100 TK","300 TK","200 TK")
         val popularFoodImages = listOf(R.drawable.menu1 ,R.drawable.menu2,R.drawable.menu3 , R.drawable.menu4 ,R.drawable.menu1 ,R.drawable.menu1)
-
-        // --- FIX Applied Here ---
-        // 1. Define the list for the owner/restaurant names
         val ownerName = listOf("Happy Tastes", "The Soup Co", "Momo Mania", "Restaurant X", "The Cheese Spot", "The Noodle Hut")
-
-        // 2. Correctly pass all four lists to the PopularAdapter constructor
         val adapter= PopularAdapter(foodName, Price , popularFoodImages, ownerName)
-        // -------------------------
 
         binding.popularRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.popularRecyclerView.adapter = adapter

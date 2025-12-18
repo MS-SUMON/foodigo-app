@@ -2,7 +2,7 @@ package com.example.admin
 
 import android.os.Bundle
 import android.widget.ImageButton
-import android.widget.TextView // <-- Re-added TextView import
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,14 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.admin.adapter.MenuAdapterAdmin
 import com.example.admin.datamodel.MenuItem
-import com.example.user.R // Accessing R for layout/drawable IDs
+import com.example.user.R
 
 class SellerMenuActivityAdmin : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var btnBack: ImageButton
 
-    // 1. Data source and Adapter properties
     private lateinit var menuItems: MutableList<MenuItem>
     private lateinit var menuAdapter: MenuAdapterAdmin
 
@@ -28,47 +27,39 @@ class SellerMenuActivityAdmin : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_seller_menu_admin)
 
-        // Set up Edge-to-Edge display
+        // Edge-to-Edge display
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // **CRASH FIX: 1. Initialize Views**
         recyclerView = findViewById(R.id.recycler_view_menu)
         btnBack = findViewById(R.id.btn_back)
         val sellerNameTextView = findViewById<TextView>(R.id.tv_seller_name_header)
 
 
-        // 2. Set up Back Button Click Listener
         btnBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        // 3. Prepare Mutable Data
         menuItems = mutableListOf( // Use mutableListOf
             MenuItem("Spicy Hotpot", "Jane's Kitchen", "120 TK", R.drawable.hotpot_2),
-            MenuItem("Chicken Biryani", "Raju Restaurant", "180 TK"),
-            MenuItem("Veggie Delight", "Healthy Meals", "85 TK"),
-            MenuItem("Taco Supreme", "Mexican Place", "95 TK")
+            MenuItem("Chicken Biryani", "Raju Restaurant", "180 TK",R.drawable.menu1),
+            MenuItem("Veggie Delight", "Healthy Meals", "85 TK",R.drawable.menu2),
+            MenuItem("Taco Supreme", "Mexican Place", "95 TK",R.drawable.menu3)
         )
 
-        // 4. Initialize and Set up the Adapter
         menuAdapter = MenuAdapterAdmin(menuItems) { menuItemToDelete ->
-            // **DELETION LOGIC**
 
             val position = menuItems.indexOf(menuItemToDelete)
             if (position != -1) {
                 // Remove item from data source
                 menuItems.removeAt(position)
-
                 // Notify adapter of the removal at a specific position
                 menuAdapter.notifyItemRemoved(position)
-
                 // Notify adapter that the remaining items' positions have shifted
                 menuAdapter.notifyItemRangeChanged(position, menuItems.size)
-
                 Toast.makeText(
                     this,
                     "🗑️ Deleted ${menuItemToDelete.foodName}",

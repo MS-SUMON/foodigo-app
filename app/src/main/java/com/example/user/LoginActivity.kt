@@ -9,36 +9,29 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.seller.MainActivitySeller
 import com.example.admin.MainActivityAdmin
-import com.example.user.databinding.ActivityLoginBinding // 💡 MISSING BINDING IMPORT ADDED
-import com.google.firebase.auth.FirebaseAuth // 💡 MISSING IMPORT ADDED
-import com.google.firebase.database.DatabaseReference // 💡 MISSING IMPORT ADDED
-import com.google.firebase.database.ktx.database // For Firebase.database
-import com.google.firebase.ktx.Firebase // For Firebase.auth and Firebase.database
+import com.example.user.databinding.ActivityLoginBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
-
-    // Removed the initial redeclarations. Use only one set of declarations.
     private lateinit var auth: FirebaseAuth
-    private lateinit var database: DatabaseReference // Not strictly needed for *login*, but kept as it was in original
-    private lateinit var email: String // Initialized later, can be removed if not needed outside performLogin
-    private lateinit var password: String // Initialized later, can be removed if not needed outside performLogin
-    private var isPasswordVisible = false // 💡 REDECLARATION REMOVED
-
-    // Initialize binding using lazy delegate
+    private lateinit var database: DatabaseReference
+    private lateinit var email: String
+    private lateinit var password: String
+    private var isPasswordVisible = false
     private val binding: ActivityLoginBinding by lazy {
         ActivityLoginBinding.inflate(layoutInflater)
     }
-
-    // 💡 REMOVED REDECLARATIONS AND KEPT THE ONES ABOVE
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        // 2. Initialize FirebaseAuth instance and Database
-        auth = FirebaseAuth.getInstance() // Standard way to init Auth if not using KTX delegate
-        database = Firebase.database.reference // Initializing database reference
+        // 2. Initialize FirebaseAuth
+        auth = FirebaseAuth.getInstance()
+        database = Firebase.database.reference
 
         // "Don't have account" button
         binding.donthavebutton.setOnClickListener {
@@ -56,8 +49,7 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // --- Password strength check ---
-            // 💡 Ensure you are calling the complete isStrongPassword function
+            // Password strength check
             val passwordError = isStrongPassword(password)
             if (passwordError != null) {
                 Toast.makeText(this, passwordError, Toast.LENGTH_LONG).show()
@@ -67,11 +59,7 @@ class LoginActivity : AppCompatActivity() {
             performLogin(email, password)
         }
 
-        // Password Visibility Toggle
-        // 💡 The password field ID should be checked. The code uses `binding.editTextTextPassword`
-        // in setOnTouchListener, but then uses `binding.passwordLogin` inside the listener.
-        // I will standardize on `binding.passwordLogin` for the listener.
-        binding.passwordLogin.setOnTouchListener { v, event -> // 💡 STANDARDIZED ID TO passwordLogin
+        binding.passwordLogin.setOnTouchListener { v, event ->
             val DRAWABLE_END = 2
             if (event.action == MotionEvent.ACTION_UP) {
                 val editText = binding.passwordLogin
@@ -97,16 +85,12 @@ class LoginActivity : AppCompatActivity() {
             false
         }
     }
-
     private fun performLogin(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Login successful! Now determine the user role
                     Toast.makeText(baseContext, "Login Successful.", Toast.LENGTH_SHORT).show()
 
-                    // Check for Admin Role, Seller Role, or Default User Role
-                    // NOTE: This role determination via email prefix is NOT secure and should be done via a database lookup!
                     if (email.startsWith("admin", ignoreCase = true) && email.contains("@")) {
                         startActivity(Intent(this, MainActivityAdmin::class.java))
                         finish()
@@ -119,25 +103,16 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     }
-
                 } else {
-                    // Login failed (e.g., incorrect email or password)
                     Toast.makeText(baseContext, "Authentication Failed. Please check your Email and Password.",
                         Toast.LENGTH_LONG).show()
                 }
             }
     }
-
-    // 💡 REMOVED INCOMPLETE isStrongPassword FUNCTION AND KEPT THE COMPLETE ONE BELOW
-
-    // 💡 The 'navigateUser' and 'isValidEmail' functions are unused in the provided logic, so they can be removed or kept if needed elsewhere.
-
-    // Password Strength Check (Complete version)
     private fun isStrongPassword(password: String): String? {
         if (password.length < 8) {
             return "Password must be at least 8 characters"
         }
-        // Requires digit, lowercase, uppercase, and special character
         val regex = Regex("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%^&+=])(?=\\S+\$).{8,}\$")
 
         if (!regex.matches(password)) {

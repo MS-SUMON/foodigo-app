@@ -10,10 +10,8 @@ import com.example.user.adapter.MenuAdapter
 import com.example.user.databinding.FragmentMenuBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-
 class MenuBottomSheetFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentMenuBottomSheetBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +28,8 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
             dismiss()
         }
 
-        // --- Define all required data lists ---
         val menuFoodName = listOf("Burger", "Sandwich", "Momo", "Item", "Sandwich", "Momo","Burger", "Sandwich", "Momo", "Item", "Sandwich", "Momo")
         val menuItemPrice = listOf("200 TK", "150 TK", "200 TK", "200 TK", "130 TK", "250 TK","150 TK", "100 TK", "300 TK", "300 TK", "80 TK", "150 TK")
-
-        // Define the Owner Names list (must match the size of other lists)
         val menuOwnerName = listOf("Owner A", "Owner B", "Owner C", "Owner D", "Owner E", "Owner F","Owner A", "Owner B", "Owner C", "Owner D", "Owner E", "Owner F") // 12 items
 
         val menuImage = listOf(
@@ -52,13 +47,13 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
             R.drawable.menu3
         )
 
-        // --- FIX: Pass all FIVE arguments to the MenuAdapter constructor ---
+        //Pass all 5 in to the MenuAdapter constructor
         val adapter = MenuAdapter(
             ArrayList(menuFoodName),
             ArrayList(menuItemPrice),
             ArrayList(menuImage),
-            ArrayList(menuOwnerName), // 1. Pass the new Owner Name list
-            requireContext()          // 2. Pass the Context (renamed 'context' in adapter)
+            ArrayList(menuOwnerName),
+            requireContext()
         )
 
         binding.menuRecyclerView.layoutManager = LinearLayoutManager(requireContext())

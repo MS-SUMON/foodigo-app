@@ -14,11 +14,9 @@ class MenuAdapter(
     private val menuItemsName: MutableList<String>,
     private val menuItemPrice: MutableList<String>,
     private val menuImages: MutableList<Int>,
-    private val ownerNames: MutableList<String>, // ADDED: Assuming you have a list of owner names for consistency
-    private val context: Context // RENAMED: Changed 'requireContext' to 'context' for clarity in adapter
+    private val ownerNames: MutableList<String>,
+    private val context: Context
 ) : RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
-
-    // Removed the unused itemClickListener interface and property
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -41,18 +39,14 @@ class MenuAdapter(
 
         fun bind(position: Int) {
             binding.apply {
-                // Bind the data to the layout views
+
                 menuFoodName.text = menuItemsName[position]
                 menuPrice.text = menuItemPrice[position]
                 menuImage.setImageResource(menuImages[position])
-                // ownerNamePopular is the ID in your XML for the owner name
                 ownerName.text = ownerNames[position]
 
-                // --- FIX: Implement the click listener here ---
-                // This correctly uses the item's view and its context.
                 binding.root.setOnClickListener {
                     val intent = Intent(context, DetailsActivity::class.java).apply {
-                        // Pass ALL relevant data using consistent keys
                         putExtra("menuItemName", menuItemsName[position])
                         putExtra("menuItemPrice", menuItemPrice[position])
                         putExtra("menuItemImage", menuImages[position])
